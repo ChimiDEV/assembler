@@ -16,7 +16,7 @@ long int factorial(int n) {
 double power(double n, int m) {
 	double tmp = 1;
 	int i;
-    
+
     // Power of n
 	for(i = 0; i < m; i++) {
 		tmp *= n;
@@ -30,7 +30,7 @@ double sin0(double x) {
     double sign = -1.0;
 
     // Taylor Approximation (8)
-    for(i = 0; i < 16; i++) {
+    for(i = 0; i < 8; i++) {
         //double sign = power(-1, i);
         sign = -sign;
         double px = power(x, 2*i+1);
@@ -64,10 +64,10 @@ int main() {
         return 1;
     }
 
-    printf("Sine of: %.20lf\n", x);
+    printf("Sine of: %.10lf\n", x);
 
-    printf("Result (libary): %.20lf\n", sin(x));
-    printf("Result (execerise): %.20lf\n", sin0(x));
+    printf("Result (libary): %.10lf\n", sin(x));
+    printf("Result (execerise): %.10lf\n", sin0(x));
 
     return 0;
 }
