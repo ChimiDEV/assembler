@@ -29,8 +29,8 @@ double sin0(double x) {
     double result;
     double sign = -1.0;
 
-    // Taylor Approximation (8)
-    for(i = 0; i < 8; i++) {
+    // Taylor Approximation (7)
+    for(i = 0; i < 7; i++) {
         //double sign = power(-1, i);
         sign = -sign;
         double px = power(x, 2*i+1);
