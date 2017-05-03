@@ -26,16 +26,23 @@ double power(double n, int m) {
 
 double sin0(double x) {
     int i;
-    double result;
-    double sign = -1.0;
 
     // Taylor Approximation (7)
-    for(i = 0; i < 7; i++) {
+    /* for(i = 0; i < 7; i++) {
         //double sign = power(-1, i);
         sign = -sign;
         double px = power(x, 2*i+1);
         long fac = factorial(2*i+1);
         result += sign * px / fac;
+    } */
+    double numerator = x;
+    double denominator = 1;
+    double result = x;
+
+    for ( int i = 1; i < rounds; i++){
+        numerator = numerator * (-1) * pow(x, 2.0);
+        denominator = denominator * (2*i) * (2*i+1);
+        result = result + numerator/denominator;
     }
 
     return result;
