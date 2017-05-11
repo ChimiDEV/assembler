@@ -5,6 +5,7 @@ double power(double n, int m) {
 	double result = 1;
 	int i;
     // n to power of m
+    // Isn't used in assembler -> only x*x
     if (n == 0 || n == 1) {
         // return 1
         return result;
@@ -23,9 +24,9 @@ double sin0(double x) {
     double result = x;
 
     for (int i = 1; i < 7; i++){
-        numerator = numerator * (-1) * pow(x, 2);
-        denominator = denominator * (2*i) * (2*i+1);
-        result = result + numerator/denominator;
+        numerator *= (-1) * pow(x, 2);
+        denominator *=  (2*i) * (2*i+1);
+        result += numerator/denominator;
     }
 
     return result;
