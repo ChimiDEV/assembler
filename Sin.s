@@ -32,7 +32,7 @@ main:
     # $f24: Number of steps
     # $f26: Size of step
     # $f30: Zero Double,
-    # $s1: Tayloer Rounds
+    # $s1:  Taylor Rounds
 
 	l.d     $f30, zeroDouble        # Load 0.0 to $f30
     add.d   $f22, $f22, $f30        # Current step = 0
@@ -176,7 +176,6 @@ sin0_loop:
     mul.d   $f28, $f0, $f0          # tmp = x*x = x^2
     mul.d   $f4, $f4, $f28
     neg.d   $f4, $f4                # numerator *= (-1) * (x^2)
-    #addi    $t2, $t2, 1            #
     add     $t2, $t0, $t0           # $t2 = 2i
     mul     $t1, $t1, $t2           # denominator *= 2i
     addi    $t2, $t2, 1             # $t2 = 2i + 1
@@ -189,7 +188,7 @@ sin0_loop:
     add.d   $f2, $f2, $f28          # result += res + (numerator/denominator)
 
     addi    $t0, $t0, 1             # i++
-    bge     $t0, $s1, return_main   # jump if enough terms been calculated
+    bge     $t0, $s1, func_end      # jump if enough terms been calculated
     j       sin0_loop
 
 sin:
@@ -205,7 +204,7 @@ sin:
     l.d     $f4, piHalf             # Load pi/2 to $f4
 
 
-    jal     func_end                # Hacky way: Load address of sin in $ra
+    #jal     func_end                # Hacky way: Load address of sin in $ra
 
     c.le.d  $f4, $f0   		        # checks if x >= Pi/2
     cfc1    $t0, $25  			    # load FCCR into t0
@@ -218,7 +217,8 @@ sin:
     andi    $t0, 1    			    # $t0 = $t0 AND 1
     beq     $t0, 1, increase_range  # if x <= -Pi/2, goes to increase_range
 
-    j       sin0
+    jal     sin0
+    j       return_main
 
 decrease_range_check:
     # Register:
