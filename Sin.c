@@ -23,7 +23,7 @@ double sin0(double x) {
     double denominator = 1;
     double result = x;
 
-    for (int i = 1; i < 7; i++){
+    for (int i = 1; i < 7; i++) {
         numerator *= (-1) * pow(x, 2);
         denominator *=  (2*i) * (2*i+1);
         result += numerator/denominator;
